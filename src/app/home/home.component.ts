@@ -12,8 +12,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     if (this.router.url === '/') {
-        this.router.navigate(['/users']);
+      console.log('a')
+      this.router.navigate(['/users']);
     }
-}
+  }
 
 }
