@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { UsersComponent } from './users.component';
 import { UsersRoutingModule } from './users-routing.module';
@@ -16,7 +17,8 @@ import { UsersListComponent } from './users-list/users-list.component';
     imports: [
         CommonModule,
         UsersRoutingModule,
-        PageHeaderModule
+        PageHeaderModule,
+        NgbModule.forRoot(),
     ]
 })
 export class UsersModule {}
