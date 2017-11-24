@@ -10,10 +10,11 @@ import { routerTransition } from '../../../router.animations';
 export class UsersListComponent implements OnInit {
 
   public users = [
-    { userId: 1, username: "username", fullname: "fullname", email: "email@email.com", status: "Active"},
-    { userId: 2, username: "username", fullname: "fullname", email: "email@email.com", status: "In-Active"},
-    { userId: 3, username: "username", fullname: "fullname", email: "email@email.com", status: "In-Active"}
+    { userId: 1, username: "usernamey", fullname: "fullname", email: "email7@email.com", status: "Active"},
+    { userId: 2, username: "usernamek", fullname: "fullname", email: "email6@email.com", status: "In-Active"},
+    { userId: 3, username: "usernamet", fullname: "fullname", email: "email5@email.com", status: "In-Active"}
   ]
+
 
   constructor() { }
 

@@ -1,7 +1,9 @@
-import { Router } from '@angular/router';
+import { UrlSegment } from '@angular/router/src/url_tree';
+import { Router, ActivatedRoute, Params, UrlMatcher } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../../router.animations';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
@@ -12,36 +14,69 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class UserComponent implements OnInit {
   roles = ['Admin', 'Monitoring']
   closeResult: string;
-//   constructor(private modalService: NgbModal, public router: Router) { }
+  editMode = false;
+  id: number;
+  userForm: FormGroup
+  //errors = []
+  success = ""
 
-//   open(content) {
-//     this.modalService.open(content).result.then((result) => {
-//         this.closeResult = `Closed with: ${result}`;
-//         this.router.navigate(['/users']);
-//         console.log(`Closed with: ${result}`)
-//     }, (reason) => {
-//         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-//         this.router.navigate(['/users']);
-//         console.log(`Dismissed ${this.getDismissReason(reason)}`)
-//     });
-
-    
-// }
-
-// private getDismissReason(reason: any): string {
-//   if (reason === ModalDismissReasons.ESC) {
-//     console.log('by pressing ESC')
-//       return 'by pressing ESC';
-//   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-//     console.log('by pressing backdrop')
-//       return 'by clicking on a backdrop';
-//   } else {
-//     console.log(`with: ${reason}`)
-//       return  `with: ${reason}`;
-//   }
-// }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router) {
+  }
 
   ngOnInit() {
+
+    this.formInit()
+
+    // this.userForm.statusChanges.subscribe(
+    //   (value) => {
+    //     if(value=="INVALID") {
+    //       if(this.userForm.get('mobile').touched && this.userForm.get('mobile').value==="") {
+        
+    //     }
+    //   }
+    //   }
+    // )
+
+    this.route.url
+    .subscribe(
+    (params: UrlSegment[]) => {
+      if (params.length > 1) {
+        this.editMode = true
+      }
+    });
+
+    this.route.params
+      .subscribe(
+      (params: any) => {
+        // console.log(params)
+         this.id = +params['id'];
+         if(this.editMode) {
+          console.log(this.id)
+         }
+         
+        // this.editMode = params['id'] != null;
+        // this.initForm();
+      });
+
+   
+
+      
+  }
+  
+  formInit() {
+    this.userForm = new FormGroup({
+      'username': new FormControl(null, Validators.required),
+      'email': new FormControl(null, [Validators.required, Validators.email]),
+      'fullname': new FormControl(null, Validators.required),
+      'mobile': new FormControl(null, Validators.required),
+      'role': new FormControl(null, Validators.required)
+    })
+  }
+
+  onSubmit() {
+    console.log(this.userForm)
   }
 
 }

@@ -3,71 +3,79 @@
 
   <div class="row">
     <div class="col col-xl-6 col-lg-12">
-      <form role="form">
-        <fieldset class="form-group">
-          <label>Username</label>
-          <input class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-          <label>Full Name</label>
-          <input class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-          <label>Mobile</label>
-          <input class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-          <label>Email</label>
-          <input class="form-control">
-        </fieldset>
-        <div class="form-group">
-          <label>Role</label>
-          <div class="checkbox"  *ngFor="let role of roles">
-            <label>
-              <input type="checkbox" [value]="role"> {{role}}
-            </label>
-          </div>
+      <div class="alert alert-success" *ngIf="success != '' ">
+        <strong>Well done!</strong>
+        {{success}}
+      </div>
+
+      <div class="alert alert-danger" *ngIf="!userForm.get('username').valid && userForm.get('username').touched">
+          <strong>Oh snap!</strong> Please enter a valid username.
         </div>
-        <button class="btn btn-primary">Save</button>
-        <button type="reset" class="btn btn-secondary">Reset</button>
-      </form>
+        <div class="alert alert-danger" *ngIf="!userForm.get('mobile').valid && userForm.get('mobile').touched">
+          <strong>Oh snap!</strong> Please enter a valid mobile.
+        </div>
+        <div class="alert alert-danger" *ngIf="!userForm.get('email').valid && userForm.get('email').touched">
+          <strong>Oh snap!</strong> Please enter a valid email.
+        </div>
+        <div class="alert alert-danger" *ngIf="userForm.get('role').value=='' && userForm.get('role').touched">
+          <strong>Oh snap!</strong> Please enter a valid username.
+        </div>
+  
+      </div>
+   
+
     </div>
+
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <fieldset class="form-group">
+        <label>Username</label>
+        <input formControlName="username" class="form-control">
+      </fieldset>
+      <fieldset class="form-group">
+        <label>Full Name</label>
+        <input formControlName="fullname" class="form-control">
+      </fieldset>
+      <fieldset class="form-group">
+        <label>Mobile</label>
+        <input formControlName="mobile" class="form-control">
+      </fieldset>
+      <fieldset class="form-group">
+        <label>Email</label>
+        <input formControlName="email" class="form-control">
+      </fieldset>
+      <div class="form-group">
+        <label>Role</label>
+        <div class="radio" *ngFor="let role of roles">
+          <label>
+            <input formControlName="role" type="radio" [value]="role"> {{role}}
+          </label>
+        </div>
+      </div>
+      <button *ngIf="!editMode" type="submit" class="btn btn-primary">Save</button>
+      <button *ngIf="editMode" type="submit" class="btn btn-primary">Update</button>
+      <button type="reset" class="btn btn-warning">Reset</button>
+      <button *ngIf="editMode" type="button" class="btn btn-info">Generate Password</button>
+    </form>
   </div>
-</div>
-
-<!-- <div class="row">
-    <div class="col-sm-12">
- 
-      
-           
-       
-                <button class="btn btn-primary" (click)="open(content)">Large modal</button>
-                <ng-template #content let-c="close" let-d="dismiss">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Modal title</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>One fine body&hellip;</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
-                    </div>
-                </ng-template>
-           
-      
-    </div>
-</div> -->
 
 
-  <!-- <div class="form-group has-success">
-                    <label class="form-control-label" for="inputSuccess">Input with success</label>
-                    <input type="text" class="form-control form-control-success" id="inputSuccess">
-                </div>
 
-                <div class="form-group has-danger">
-                    <label class="form-control-label" for="inputError">Input with danger</label>
-                    <input type="text" class="form-control form-control-danger" id="inputError">
-                </div> -->
+<!-- 
+
+<div class="alert alert-danger" *ngIf="!userForm.valid && userForm.touched">
+    <ul>
+      <li *ngIf="!userForm.get('username').valid && userForm.get('username').touched">
+        <strong>Oh snap!</strong> Please enter a valid username.
+      </li>
+      <li *ngIf="!userForm.get('fullname').valid && userForm.get('fullname').touched">
+        <strong>Oh snap!</strong> Please enter a valid fullname.
+      </li>
+      <li *ngIf="!userForm.get('mobile').valid && userForm.get('mobile').touched">
+        <strong>Oh snap!</strong> Please enter a valid mobile.
+      </li>
+      <li *ngIf="!userForm.get('email').valid && userForm.get('email').touched">
+        <strong>Oh snap!</strong> Please enter a valid email.
+      </li>
+
+    </ul>
+  </div> -->
