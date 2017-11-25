@@ -9,7 +9,10 @@ const routes: Routes = [
         component: HomeComponent,
         children: [
             { path: '', pathMatch: 'full', redirectTo: 'users' },
-            { path: 'users', loadChildren: './users/users.module#UsersModule' }
+            // { path: 'home', redirectTo: 'users' },
+            // { path: '', pathMatch: 'full', redirectTo: 'users' },
+            { path: 'users', loadChildren: './users/users.module#UsersModule' },
+            { path: 'password', loadChildren: './password/password.module#PasswordModule' }
         ]
     }
 ]
