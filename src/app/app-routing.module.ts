@@ -7,7 +7,7 @@ const routes: Routes = [
         loadChildren: './home/home.module#HomeModule' 
     },
     { path: 'login', loadChildren: './login/login.module#LoginModule' },
-    // { path: 'password', loadChildren: './password/password.module#PasswordModule' },
+    // { path: 'terminals', loadChildren: './terminals/terminals.module#TerminalsModule' },
     { path: 'not-found', loadChildren: './not-found/not-found.module#NotFoundModule' },
     { path: '**', redirectTo: 'not-found' }
 ]

@@ -9,6 +9,8 @@ import { routerTransition } from '../../../router.animations';
 })
 export class UsersListComponent implements OnInit {
 
+  searchTerm: string = ''
+  
   public users = [
     { userId: 1, username: "usernamey", fullname: "fullname", email: "email7@email.com", status: "Active"},
     { userId: 2, username: "usernamek", fullname: "fullname", email: "email6@email.com", status: "In-Active"},
@@ -19,6 +21,10 @@ export class UsersListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  clearSearch() {
+    this.searchTerm = ''
   }
 
 }

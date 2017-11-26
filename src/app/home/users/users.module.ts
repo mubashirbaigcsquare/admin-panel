@@ -24,7 +24,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
         PageHeaderModule,
         ReactiveFormsModule,
         FormsModule,
-        NgbModule.forRoot(),
+        // NgbModule.forRoot(),
         // Ng2FilterPipeModule,
         Ng2SearchPipeModule
     ]

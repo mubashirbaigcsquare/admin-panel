@@ -3,10 +3,10 @@
     <div class="row">
         <div class="col col-sm-6">
             <div class="form-group input-group">
-                <input type="text" class="form-control" [(ngModel)]="term">
+                <input type="text" class="form-control" [(ngModel)]="searchTerm">
                 <span class="input-group-btn">
-                    <button class="btn btn-secondary" type="button">
-                        <i class="fa fa-search"></i>
+                    <button class="btn btn-secondary" (click)="clearSearch()" type="button">
+                        <i class="fa fa-remove"></i>
                     </button>
                 </span>
             </div>
@@ -30,7 +30,7 @@
                         </tr>
                     </thead>
                     <tbody >
-                        <tr *ngFor="let user of users |filter:term">
+                        <tr *ngFor="let user of users | filter:searchTerm">
                             <th scope="row">{{user.userId}}</th>
                             <td>{{user.username}}</td>
                             <td>{{user.fullname}}</td>

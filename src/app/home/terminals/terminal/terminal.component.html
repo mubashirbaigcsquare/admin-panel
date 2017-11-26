@@ -1,0 +1,29 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Terminal'" [icon]="'fa-edit'"></app-page-header>
+      <form>
+        <fieldset class="form-group">
+          <label>Terminal Name</label>
+          <input  class="form-control">
+        </fieldset>
+        <fieldset class="form-group">
+          <label>IP Address</label>
+          <input  class="form-control">
+        </fieldset>
+        <fieldset class="form-group">
+          <label>MAC Address</label>
+          <input  class="form-control">
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Keep Alive Timer</label>
+          <input class="form-control">
+        </fieldset>
+        <fieldset class="form-group">
+            <label>Keep Alive Timer</label>
+            <input class="form-control">
+        </fieldset>
+
+        <button *ngIf="!editMode" type="submit" class="btn btn-primary">Save</button>
+        <button *ngIf="editMode" type="submit" class="btn btn-primary">Update</button>
+        <button type="reset" class="btn btn-warning">Reset</button>
+      </form>
+    </div>

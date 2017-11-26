@@ -1,0 +1,54 @@
+<div [@routerTransition]>
+  <app-page-header [heading]="'Terminals'" [icon]="'fa-table'"></app-page-header>
+  <div class="row">
+    <div class="col col-sm-6">
+      <div class="form-group input-group">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm">
+        <span class="input-group-btn">
+          <button class="btn btn-secondary" (click)="clearSearch()" type="button">
+            <i class="fa fa-remove"></i>
+          </button>
+        </span>
+      </div>
+    </div>
+    <div class="col col-sm-6 ">
+      <div class="form-group input-group">
+        <button type="button" routerLink="new" class="btn btn-primary">New Terminal</button>
+      </div>
+    </div>
+    <div class="col col-xl-12 col-lg-12">
+      <div class="card-block table-responsive">
+        <table class="table">
+          <thead class="thead-inverse">
+            <tr>
+              <th>#</th>
+              <th>Terminal Name</th>
+              <th>IP Address</th>
+              <th>MAC Address</th>
+              <th>Keep Alive Timer</th>
+              <th>Branch Name</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let terminal of terminals |filter:searchTerm">
+              <th scope="row">{{terminal.terminalId}}</th>
+              <td>{{terminal.terminalName}}</td>
+              <td>{{terminal.ipAddress}}</td>
+              <td>{{terminal.macAddress}}</td>
+              <td align="center">{{terminal.keepAliveTimer}}</td>
+              <td>{{terminal.branchName}}</td>
+              <td>
+                <p [ngClass]="terminal.status==='Active' ?  'btn btn-sm btn-success' : 'btn btn-sm btn-danger'">{{terminal.status}}</p>
+              </td>
+              <td>
+                <button type="button" routerLink="{{terminal.terminalId}}/edit" class="btn btn-sm btn-info">Edit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
