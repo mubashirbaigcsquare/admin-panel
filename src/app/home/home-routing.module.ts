@@ -13,7 +13,9 @@ const routes: Routes = [
             // { path: '', pathMatch: 'full', redirectTo: 'users' },
             { path: 'users', loadChildren: './users/users.module#UsersModule' },
             { path: 'password', loadChildren: './password/password.module#PasswordModule' },
-            { path: 'terminals', loadChildren: './terminals/terminals.module#TerminalsModule' }
+            { path: 'terminals', loadChildren: './terminals/terminals.module#TerminalsModule' },
+            { path: 'terminals-monitor', loadChildren: './monitoring/monitoring.module#MonitoringModule' },
+            { path: 'issues-logs', loadChildren: './issues-logs/issues-logs.module#IssuesLogsModule' }
         ]
     }
 ]

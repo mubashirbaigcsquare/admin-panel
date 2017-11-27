@@ -1,29 +1,101 @@
 <div [@routerTransition]>
-    <app-page-header [heading]="'Terminal'" [icon]="'fa-edit'"></app-page-header>
+  <app-page-header [heading]="'Terminal'" [icon]="'fa-edit'"></app-page-header>
+
+  <div class="col col-xl-6 col-xl-offset-5">
       <form>
-        <fieldset class="form-group">
-          <label>Terminal Name</label>
-          <input  class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-          <label>IP Address</label>
-          <input  class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-          <label>MAC Address</label>
-          <input  class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-          <label>Keep Alive Timer</label>
-          <input class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
+          <fieldset class="form-group">
+            <label>Terminal Name</label>
+            <input class="form-control">
+          </fieldset>
+          <fieldset class="form-group">
+            <label>IP Address</label>
+            <input class="form-control">
+          </fieldset>
+          <fieldset class="form-group">
+            <label>MAC Address</label>
+            <input class="form-control">
+          </fieldset>
+          <fieldset class="form-group">
             <label>Keep Alive Timer</label>
             <input class="form-control">
-        </fieldset>
+          </fieldset>
+          <div class="form-group">
+            <label>Region</label>
+            <select class="form-control">
+              <option>1</option>
+              <option>2</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>City</label>
+            <select class="form-control">
+              <option>1</option>
+              <option>2</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Branch</label>
+            <select class="form-control">
+              <option>1</option>
+              <option>2</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>License</label>
+            <select class="form-control">
+              <option>1</option>
+              <option>2</option>
+            </select>
+          </div>
 
-        <button *ngIf="!editMode" type="submit" class="btn btn-primary">Save</button>
-        <button *ngIf="editMode" type="submit" class="btn btn-primary">Update</button>
-        <button type="reset" class="btn btn-warning">Reset</button>
-      </form>
-    </div>
+          <fieldset class="form-group" *ngIf="editMode">
+              <label>Device Status : </label>
+              <label class="radio-inline">
+                  <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked="">Active
+              </label>
+              <label class="radio-inline">
+                  <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">In-Active
+              </label>
+          </fieldset>
+      
+          <table class="card-block table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Device Code</th>
+                <th>Device Name</th>
+                <th>Serial No.</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-active">
+                <th scope="row">1</th>
+                <td>BIOD</td>
+                <td>Biometric Device</td>
+                <td>12345</td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">2</th>
+                <td>BIOD</td>
+                <td>Biometric Device</td>
+                <td>12345</td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row">3</th>
+                <td>BIOD</td>
+                <td>Biometric Device</td>
+                <td>12345</td>
+            </tr>
+            </tbody>
+        </table>
+      
+        <hr>
+
+          <button *ngIf="!editMode" type="submit" class="btn btn-primary">Save</button>
+          <button *ngIf="editMode" type="submit" class="btn btn-primary">Update</button>
+          <button type="reset" class="btn btn-warning">Reset</button>
+        </form>
+  </div>
+
+  
+</div>
