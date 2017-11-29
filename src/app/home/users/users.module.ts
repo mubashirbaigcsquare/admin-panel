@@ -11,6 +11,7 @@ import { PageHeaderModule } from './../../shared/modules';
 import { UserComponent } from './user/user.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { PipeModule } from '../../shared/pipes/pipes.module';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
         FormsModule,
         // NgbModule.forRoot(),
         // Ng2FilterPipeModule,
-        Ng2SearchPipeModule
+        Ng2SearchPipeModule,
+        PipeModule
     ]
 })
 export class UsersModule {}

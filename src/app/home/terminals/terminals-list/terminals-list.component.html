@@ -16,7 +16,7 @@
         <button type="button" routerLink="new" class="btn btn-primary">New Terminal</button>
       </div>
     </div>
-    <div class="col col-xl-12 col-lg-12">
+    <div class="col col-xl-12 col-lg-12" *ngIf="display; else noTerminals">      
       <div class="card-block table-responsive">
         <table class="table">
           <thead class="thead-inverse">
@@ -40,7 +40,7 @@
               <td align="center">{{terminal.keepAliveTimer}}</td>
               <td>{{terminal.branchName}}</td>
               <td>
-                <p [ngClass]="terminal.status==='Active' ?  'btn btn-sm btn-success' : 'btn btn-sm btn-danger'">{{terminal.status}}</p>
+                <p [ngClass]="terminal.terminalStatus==='1' ?  'btn btn-sm btn-success' : 'btn btn-sm btn-danger'">{{terminal.terminalStatus | status:2}}</p>
               </td>
               <td>
                 <button type="button" routerLink="{{terminal.terminalId}}/edit" class="btn btn-sm btn-info">Edit</button>
@@ -50,5 +50,12 @@
         </table>
       </div>
     </div>
+    <ng-template #noTerminals>
+        <div class="col-lg-12">
+            <div class="alert alert-danger">
+                <strong>Oh snap!</strong> {{userErrorMessage}}
+            </div>
+        </div>
+    </ng-template>
   </div>
 </div>

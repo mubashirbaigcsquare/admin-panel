@@ -1,11 +1,13 @@
-import { AppRoutingModule } from './app-routing.module';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
+import { TerminalService } from './shared/services/terminal.service';
+import { UserService } from './shared/services/user.service';
+import { MonitorService } from './shared/services/monitor.service';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,7 @@ import { AppComponent } from './app.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [MonitorService, TerminalService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

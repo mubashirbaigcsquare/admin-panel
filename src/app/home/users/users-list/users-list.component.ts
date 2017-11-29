@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../../router.animations';
+import { UserService } from '../../../shared/services/user.service';
 
 @Component({
   selector: 'app-users-list',
@@ -9,18 +10,25 @@ import { routerTransition } from '../../../router.animations';
 })
 export class UsersListComponent implements OnInit {
 
-  searchTerm: string = ''
-  
-  public users = [
-    { userId: 1, username: "usernamey", fullname: "fullname", email: "email7@email.com", status: "Active"},
-    { userId: 2, username: "usernamek", fullname: "fullname", email: "email6@email.com", status: "In-Active"},
-    { userId: 3, username: "usernamet", fullname: "fullname", email: "email5@email.com", status: "In-Active"}
-  ]
+  searchTerm = ''
+  display = true
+  userErrorMessage = ''
+  users = []
 
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.userService.getUsers()
+    .first() // only gets fired once
+    .subscribe((data) => {
+      this.users = data.UserResponse;
+      this.display = true;
+    }, (error) => {
+      console.log(error)
+      this.userErrorMessage = error.ErrorResponse.userMessage
+      this.display = false;
+    });
   }
 
   clearSearch() {
