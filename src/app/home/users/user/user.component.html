@@ -7,56 +7,75 @@
         <strong>Well done!</strong>
         {{success}}
       </div>
-
-      <div class="alert alert-danger" *ngIf="!userForm.get('username').valid && userForm.get('username').touched">
-          <strong>Oh snap!</strong> Please enter a valid username.
-        </div>
-        <div class="alert alert-danger" *ngIf="!userForm.get('mobile').valid && userForm.get('mobile').touched">
-          <strong>Oh snap!</strong> Please enter a valid mobile.
-        </div>
-        <div class="alert alert-danger" *ngIf="!userForm.get('email').valid && userForm.get('email').touched">
-          <strong>Oh snap!</strong> Please enter a valid email.
-        </div>
-        <div class="alert alert-danger" *ngIf="userForm.get('role').value=='' && userForm.get('role').touched">
-          <strong>Oh snap!</strong> Please enter a valid username.
-        </div>
-  
+      <div class="alert alert-danger" *ngIf="!userForm.get('user.username').valid && userForm.get('user.username').touched">
+        <strong>Oh snap!</strong> Please enter a valid username.
       </div>
-   
-
+      <div class="alert alert-danger" *ngIf="!userForm.get('user.fullname').valid && userForm.get('user.fullname').touched">
+          <strong>Oh snap!</strong> Please enter a valid fullname.
+        </div>
+      <div class="alert alert-danger" *ngIf="!userForm.get('user.mobile').valid && userForm.get('user.mobile').touched">
+        <strong>Oh snap!</strong> Please enter a valid mobile.
+      </div>
+      <div class="alert alert-danger" *ngIf="!userForm.get('user.email').valid && userForm.get('user.email').touched">
+        <strong>Oh snap!</strong> Please enter a valid email.
+      </div>
+      <!-- <div class="alert alert-danger" *ngIf="userForm.roles.controls.selectedItems.valid">
+        <strong>Oh snap!</strong> Please enter a valid role.
+      </div> -->
     </div>
+  </div>
 
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-      <fieldset class="form-group">
-        <label>Username</label>
-        <input formControlName="username" class="form-control">
-      </fieldset>
-      <fieldset class="form-group">
-        <label>Full Name</label>
-        <input formControlName="fullname" class="form-control">
-      </fieldset>
-      <fieldset class="form-group">
-        <label>Mobile</label>
-        <input formControlName="mobile" class="form-control">
-      </fieldset>
-      <fieldset class="form-group">
-        <label>Email</label>
-        <input formControlName="email" class="form-control">
-      </fieldset>
-      <div class="form-group">
-        <label>Role</label>
-        <div class="radio" *ngFor="let role of roles">
-          <label>
-            <input formControlName="role" type="radio" [value]="role"> {{role}}
-          </label>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div formGroupName="user">
+        <fieldset class="form-group">
+            <label>Username</label>
+            <input formControlName="username" class="form-control">
+          </fieldset>
+          <fieldset class="form-group">
+            <label>Full Name</label>
+            <input formControlName="fullname" class="form-control">
+          </fieldset>
+          <fieldset class="form-group">
+            <label>Mobile</label>
+            <input formControlName="mobile" class="form-control">
+          </fieldset>
+          <fieldset class="form-group">
+            <label>Email</label>
+            <input formControlName="email" class="form-control">
+          </fieldset>
+    </div>
+    
+    <div class="form-group" formGroupName="role">
+      <label>Role</label>
+      <div class="checkbox" [formArrayName]="'items'" >
+        <div *ngFor="let language of modelForm.controls.items.controls; let i = index;" [formGroup]="language">
+            <label attr.for="language_{{ language.controls.key.value }}">
+                <input type="checkbox" formControlName="checked" id="language_{{ language.controls.key.value }}">
+                {{ language.controls.value.value }}
+              </label>
+        </div>
+        
+      </div>
+    </div>
+    <button *ngIf="!editMode" type="submit" class="btn btn-primary">Save</button>
+    <button *ngIf="editMode" type="submit" class="btn btn-primary">Update</button>
+    <button type="reset" class="btn btn-warning">Reset</button>
+    <button *ngIf="editMode" type="button" class="btn btn-info">Generate Password</button>
+  </form>
+  <!-- <form [formGroup]="modelForm">
+      <div [formArrayName]="'items'" [class.invalid]="!modelForm.controls.selectedItems.valid">
+        <div *ngFor="let language of modelForm.controls.items.controls; let i = index;" [formGroup]="language">
+          <input type="checkbox" formControlName="checked" id="language_{{ language.controls.key.value }}">
+          <label attr.for="language_{{ language.controls.key.value }}">{{ language.controls.value.value }}</label>
         </div>
       </div>
-      <button *ngIf="!editMode" type="submit" class="btn btn-primary">Save</button>
-      <button *ngIf="editMode" type="submit" class="btn btn-primary">Update</button>
-      <button type="reset" class="btn btn-warning">Reset</button>
-      <button *ngIf="editMode" type="button" class="btn btn-info">Generate Password</button>
-    </form>
-  </div>
+      <div [class.invalid]="!modelForm.controls.selectedItems.valid" *ngIf="!modelForm.controls.selectedItems.valid">
+        checkbox group is required!
+      </div>
+      <hr>
+      <pre>{{modelForm.controls.selectedItems.value | json}}</pre>
+    </form> -->
+</div>
 
 
 

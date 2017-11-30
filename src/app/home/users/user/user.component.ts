@@ -1,9 +1,9 @@
 import { UrlSegment } from '@angular/router/src/url_tree';
 import { Router, ActivatedRoute, Params, UrlMatcher } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, group } from '@angular/core';
 import { routerTransition } from '../../../router.animations';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
@@ -19,25 +19,67 @@ export class UserComponent implements OnInit {
   userForm: FormGroup
   //errors = []
   success = ""
+  formControlArray:any
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder) { 
+    this.createForm();
+   }
+
+   createForm() {
+   
   }
-
+  
+  modelForm:FormGroup
+  
+  items = [
+    {key: 'Admin', value: 'Admin'},
+    {key: 'Monitoring', value: 'Monitoring'}
+  ];
+  mapItems(items) {
+    let selectedItems = items.filter((l) => l.checked).map((l) => l.key);
+    return selectedItems.length ? selectedItems : null;
+  }
   ngOnInit() {
 
-    this.formInit()
+    let group = [];
+    
+    this.items.forEach((l) => {
+      group.push(new FormGroup({
+        key: new FormControl(l.key),
+        value: new FormControl(l.value),
+        checked: new FormControl(false),
+      }));
+    });
+    
+    
 
-    // this.userForm.statusChanges.subscribe(
-    //   (value) => {
-    //     if(value=="INVALID") {
-    //       if(this.userForm.get('mobile').touched && this.userForm.get('mobile').value==="") {
-        
-    //     }
-    //   }
-    //   }
-    // )
+    //this.formInit()
+    //group.push(this.userForm)
+    let formControlArray = new FormArray(group);
+    
+    
+
+    this.modelForm = new FormGroup({
+      items: formControlArray,
+      selectedItems: new FormControl(this.mapItems(formControlArray.value), Validators.required)
+    });
+    
+    this.userForm = this.fb.group({
+      'user': this.fb.group({
+        'username': new FormControl(null, Validators.required),
+        'email': new FormControl(null, [Validators.required, Validators.email]),
+        'fullname': new FormControl(null, Validators.required),
+        'mobile': new FormControl(null, Validators.required),
+      }),
+      'role':  this.fb.group({
+        items: formControlArray,
+        selectedItems: new FormControl(this.mapItems(formControlArray.value), Validators.required)
+      })
+    });
+
+    formControlArray.valueChanges.subscribe((v) => {
+      this.modelForm.controls.selectedItems.setValue(this.mapItems(v));
+    });
 
     this.route.url
     .subscribe(
@@ -67,10 +109,12 @@ export class UserComponent implements OnInit {
   
   formInit() {
     this.userForm = new FormGroup({
-      'username': new FormControl(null, Validators.required),
-      'email': new FormControl(null, [Validators.required, Validators.email]),
-      'fullname': new FormControl(null, Validators.required),
-      'mobile': new FormControl(null, Validators.required),
+      'user': this.fb.group({
+        'username': new FormControl(null, Validators.required),
+        'email': new FormControl(null, [Validators.required, Validators.email]),
+        'fullname': new FormControl(null, Validators.required),
+        'mobile': new FormControl(null, Validators.required),
+      }),
       'role': new FormControl(null, Validators.required)
     })
   }

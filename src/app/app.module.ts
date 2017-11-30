@@ -8,6 +8,7 @@ import { TerminalService } from './shared/services/terminal.service';
 import { UserService } from './shared/services/user.service';
 import { MonitorService } from './shared/services/monitor.service';
 import { AppRoutingModule } from './app-routing.module';
+import { PasswordService } from './shared/services/password.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [MonitorService, TerminalService, UserService],
+  providers: [MonitorService, TerminalService, UserService, PasswordService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
