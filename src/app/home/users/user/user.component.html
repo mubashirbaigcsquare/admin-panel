@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <!-- <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <div formGroupName="user">
         <fieldset class="form-group">
             <label>Username</label>
@@ -61,7 +61,7 @@
     <button *ngIf="editMode" type="submit" class="btn btn-primary">Update</button>
     <button type="reset" class="btn btn-warning">Reset</button>
     <button *ngIf="editMode" type="button" class="btn btn-info">Generate Password</button>
-  </form>
+  </form> -->
   <!-- <form [formGroup]="modelForm">
       <div [formArrayName]="'items'" [class.invalid]="!modelForm.controls.selectedItems.valid">
         <div *ngFor="let language of modelForm.controls.items.controls; let i = index;" [formGroup]="language">

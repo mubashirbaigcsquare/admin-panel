@@ -22,7 +22,7 @@ export class UserComponent implements OnInit {
   formControlArray:any
 
   constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder) { 
-    this.createForm();
+    //this.createForm();
    }
 
    createForm() {
@@ -31,55 +31,55 @@ export class UserComponent implements OnInit {
   
   modelForm:FormGroup
   
-  items = [
-    {key: 'Admin', value: 'Admin'},
-    {key: 'Monitoring', value: 'Monitoring'}
-  ];
-  mapItems(items) {
-    let selectedItems = items.filter((l) => l.checked).map((l) => l.key);
-    return selectedItems.length ? selectedItems : null;
-  }
+  // items = [
+  //   {key: 'Admin', value: 'Admin'},
+  //   {key: 'Monitoring', value: 'Monitoring'}
+  // ];
+  // mapItems(items) {
+  //   let selectedItems = items.filter((l) => l.checked).map((l) => l.key);
+  //   return selectedItems.length ? selectedItems : null;
+  // }
   ngOnInit() {
 
-    let group = [];
+    // let group = [];
     
-    this.items.forEach((l) => {
-      group.push(new FormGroup({
-        key: new FormControl(l.key),
-        value: new FormControl(l.value),
-        checked: new FormControl(false),
-      }));
-    });
-    
-    
-
-    //this.formInit()
-    //group.push(this.userForm)
-    let formControlArray = new FormArray(group);
+    // this.items.forEach((l) => {
+    //   group.push(new FormGroup({
+    //     key: new FormControl(l.key),
+    //     value: new FormControl(l.value),
+    //     checked: new FormControl(false),
+    //   }));
+    // });
     
     
 
-    this.modelForm = new FormGroup({
-      items: formControlArray,
-      selectedItems: new FormControl(this.mapItems(formControlArray.value), Validators.required)
-    });
+    // //this.formInit()
+    // //group.push(this.userForm)
+    // let formControlArray = new FormArray(group);
     
-    this.userForm = this.fb.group({
-      'user': this.fb.group({
-        'username': new FormControl(null, Validators.required),
-        'email': new FormControl(null, [Validators.required, Validators.email]),
-        'fullname': new FormControl(null, Validators.required),
-        'mobile': new FormControl(null, Validators.required),
-      }),
-      'role':  this.fb.group({
-        items: formControlArray,
-        selectedItems: new FormControl(this.mapItems(formControlArray.value), Validators.required)
-      })
-    });
+    
 
-    formControlArray.valueChanges.subscribe((v) => {
-      this.modelForm.controls.selectedItems.setValue(this.mapItems(v));
-    });
+    // this.modelForm = new FormGroup({
+    //   items: formControlArray,
+    //   selectedItems: new FormControl(this.mapItems(formControlArray.value), Validators.required)
+    // });
+    
+    // this.userForm = this.fb.group({
+    //   'user': this.fb.group({
+    //     'username': new FormControl(null, Validators.required),
+    //     'email': new FormControl(null, [Validators.required, Validators.email]),
+    //     'fullname': new FormControl(null, Validators.required),
+    //     'mobile': new FormControl(null, Validators.required),
+    //   }),
+    //   'role':  this.fb.group({
+    //     items: formControlArray,
+    //     selectedItems: new FormControl(this.mapItems(formControlArray.value), Validators.required)
+    //   })
+    // });
+
+    // formControlArray.valueChanges.subscribe((v) => {
+    //   this.modelForm.controls.selectedItems.setValue(this.mapItems(v));
+    // });
 
     this.route.url
     .subscribe(
@@ -108,15 +108,15 @@ export class UserComponent implements OnInit {
   }
   
   formInit() {
-    this.userForm = new FormGroup({
-      'user': this.fb.group({
-        'username': new FormControl(null, Validators.required),
-        'email': new FormControl(null, [Validators.required, Validators.email]),
-        'fullname': new FormControl(null, Validators.required),
-        'mobile': new FormControl(null, Validators.required),
-      }),
-      'role': new FormControl(null, Validators.required)
-    })
+    // this.userForm = new FormGroup({
+    //   'user': this.fb.group({
+    //     'username': new FormControl(null, Validators.required),
+    //     'email': new FormControl(null, [Validators.required, Validators.email]),
+    //     'fullname': new FormControl(null, Validators.required),
+    //     'mobile': new FormControl(null, Validators.required),
+    //   }),
+    //   'role': new FormControl(null, Validators.required)
+    // })
   }
 
   onSubmit() {
