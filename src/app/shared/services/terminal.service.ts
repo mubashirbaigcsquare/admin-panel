@@ -9,7 +9,7 @@ export class TerminalService {
 
     getTerminals() {
         return this.http
-        .get('http://www.mocky.io/v2/5a1d48d12e0000662748b74f')
+        .get('https://www.mocky.io/v2/5a1d48d12e0000662748b74f')
         .map(
             (response: Response) => {
                 const data = response.json()

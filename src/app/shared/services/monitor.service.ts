@@ -11,7 +11,7 @@ export class MonitorService {
     getTerminalsWithDevices() {
         return this
                 .http
-                .get('http://www.mocky.io/v2/5a1d1aa32e0000de1748b668')
+                .get('https://www.mocky.io/v2/5a1d1aa32e0000de1748b668')
                 .map(
                     (response: Response) => {
                         const data = response.json()

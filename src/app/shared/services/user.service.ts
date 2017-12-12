@@ -10,7 +10,7 @@ export class UserService {
     getUsers() {
         return this
                 .http
-                .get('http://www.mocky.io/v2/5a1e68c82f00009b19ee2d3a')
+                .get('https://www.mocky.io/v2/5a1e68c82f00009b19ee2d3a')
                 .map(
                     (response: Response) => {
                         const data = response.json()

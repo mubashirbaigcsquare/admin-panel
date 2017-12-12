@@ -11,7 +11,7 @@ export class PasswordService {
         const headers = new Headers({'Content-Type': 'application/json'})
         return this
                 .http
-                .put('http://www.mocky.io/v2/5a1fe850310000231bc0b057',password, {headers: headers})
+                .put('https://www.mocky.io/v2/5a1fe850310000231bc0b057',password, {headers: headers})
                 .catch(this.handleError)
                 // .catch(res => Observable.throw(res.json())
     }
