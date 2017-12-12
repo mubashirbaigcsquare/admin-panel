@@ -15,8 +15,10 @@
         </div>
         <div class="card-block">
           Status : &nbsp;
-          <switch [status]="monitoringData[i].terminalStatus==='0' ? 'false' : 'true'" [onText]="onText" [offText]="offText" [onColor]="onColor"
-            [offColor]="offColor" [size]="size" disabled="false"></switch>
+          <!-- <switch [status]="monitoringData[i].terminalStatus==='0' ? 'false' : 'true'" [onText]="onText" [offText]="offText" [onColor]="onColor"
+            [offColor]="offColor" [size]="size" disabled="false"></switch> -->
+            <label  [ngClass]="getStyle(monitoringData[i].terminalStatus)"> {{monitoringData[i].terminalStatus}}
+              </label>            
           <p>Last Updated Time : {{terminal.lastStatusUpdated}}</p>
           <p *ngIf="terminal.isCritical==='1'">*Note: In case of critical issue terminal will be inoperable.</p>
           <div class="card-block table-responsive">
